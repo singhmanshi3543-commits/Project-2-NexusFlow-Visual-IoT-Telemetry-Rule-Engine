@@ -34,7 +34,6 @@ class DeviceSimulator:
             "AQI-004":  {"temp": 23.5, "hum": 51.0, "energy": 35.0, "aqi": 62.0},
             "IND-005":  {"temp": 28.0, "hum": 44.0, "energy": 52.0, "aqi": 75.0},
         }
-
         # Anomaly queue for deliberate spike demonstrations
         self.anomaly_queue: Dict[str, Dict[str, float]] = {}
 
