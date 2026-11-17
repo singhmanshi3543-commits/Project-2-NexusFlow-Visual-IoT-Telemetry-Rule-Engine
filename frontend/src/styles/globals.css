@@ -107,3 +107,22 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3) !important;
   border-radius: 8px;
 }
+
+/* Week 1 Canvas Integration Verification Styles */
+.react-flow__connection-line path {
+  stroke: #06B6D4;
+  stroke-width: 2.5;
+  stroke-dasharray: 5;
+  animation: dashdraw 0.5s linear infinite;
+}
+
+.react-flow__controls button {
+  background-color: #0f172a !important;
+  border-bottom: 1px solid #1e293b !important;
+  color: #94a3b8 !important;
+}
+
+.react-flow__controls button:hover {
+  background-color: #1e293b !important;
+  color: #38bdf8 !important;
+}

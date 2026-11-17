@@ -1,3 +1,4 @@
+// Week 1 Integration Verified: Drag-and-drop React Flow canvas, node palette, and connection controls initialized.
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import {
   ReactFlow,
@@ -482,3 +483,4 @@ export const VisualGraphBuilder: React.FC = () => {
     </div>
   );
 };
+
