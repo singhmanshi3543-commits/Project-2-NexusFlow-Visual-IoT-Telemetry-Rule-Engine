@@ -34,7 +34,7 @@ class DeviceSimulator:
             "AQI-004":  {"temp": 23.5, "hum": 51.0, "energy": 35.0, "aqi": 62.0},
             "IND-005":  {"temp": 28.0, "hum": 44.0, "energy": 52.0, "aqi": 75.0},
         }
-
+        # Anomaly queue for deliberate spike demonstrations
         self.anomaly_queue: Dict[str, Dict[str, float]] = {}
 
     def inject_anomaly(self, scenario: str, device_id: Optional[str] = None):
@@ -105,6 +105,7 @@ class DeviceSimulator:
             energy = max(40.0, min(75.0, state["energy"] + d_energy))
             aqi = max(50.0, min(120.0, state["aqi"] + d_aqi))
 
+        # Check if an injected anomaly exists for this device
         is_abnormal = False
         if device_id in self.anomaly_queue:
             anomaly = self.anomaly_queue.pop(device_id)
@@ -192,15 +193,18 @@ class DeviceSimulator:
                     self.tick_count += 1
                 finally:
                     db.close()
+
             except Exception as e:
                 logger.error(f"Error in simulator loop iteration: {str(e)}", exc_info=True)
 
             await asyncio.sleep(self.interval)
+
     def start(self):
         if not self.is_running:
             self.is_running = True
             self._task = asyncio.create_task(self._simulation_loop())
             logger.info("Simulator service started successfully.")
+
     def stop(self):
         if self.is_running:
             self.is_running = False
@@ -208,6 +212,7 @@ class DeviceSimulator:
                 self._task.cancel()
                 self._task = None
             logger.info("Simulator service stopped.")
+
     def get_status(self) -> Dict[str, Any]:
         return {
             "is_running": self.is_running,
@@ -215,4 +220,5 @@ class DeviceSimulator:
             "total_generated": self.total_generated,
             "active_devices": list(self.device_states.keys())
         }
+
 simulator = DeviceSimulator(interval=3.0)
