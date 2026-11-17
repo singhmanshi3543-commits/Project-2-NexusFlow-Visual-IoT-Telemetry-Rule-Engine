@@ -95,3 +95,326 @@
   background-color: #38BDF8;
   transform: scale(1.2);
 }
+
+/* ==========================================================================
+   NexusFlow React Flow Workflow Canvas - Responsive & Accessibility Styles
+   ========================================================================== */
+
+/* 1. Canvas Container & Containment (Fit available space without overflow) */
+.react-flow {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.react-flow__renderer {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  overflow: hidden !important;
+}
+
+.react-flow__viewport {
+  transform-origin: 0 0;
+}
+
+/* 2. React Flow Controls (Dark Theme & Responsive) */
+.react-flow__controls {
+  display: flex;
+  flex-direction: column;
+  background: rgba(15, 23, 42, 0.85) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(51, 65, 85, 0.7) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  margin: 12px !important;
+  z-index: 10;
+}
+
+.react-flow__controls-button {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.5) !important;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: #94A3B8 !important;
+  fill: #94A3B8 !important;
+  transition: background-color 0.15s ease, color 0.15s ease, fill 0.15s ease;
+}
+
+.react-flow__controls-button:last-child {
+  border-bottom: none !important;
+}
+
+.react-flow__controls-button:hover {
+  background: rgba(30, 41, 59, 0.9) !important;
+  color: #38BDF8 !important;
+  fill: #38BDF8 !important;
+}
+
+.react-flow__controls-button:active {
+  background: rgba(51, 65, 85, 0.8) !important;
+  color: #06B6D4 !important;
+  fill: #06B6D4 !important;
+}
+
+.react-flow__controls-button svg {
+  width: 14px;
+  height: 14px;
+  max-width: 14px;
+  max-height: 14px;
+  fill: currentColor;
+}
+
+/* 3. React Flow MiniMap (Dark Theme & Responsive) */
+.react-flow__minimap {
+  background: rgba(11, 17, 32, 0.9) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(51, 65, 85, 0.6) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  margin: 12px !important;
+  overflow: hidden;
+  transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.react-flow__minimap-mask {
+  fill: rgba(15, 23, 42, 0.75) !important;
+  stroke: #06B6D4;
+  stroke-width: 1;
+}
+
+/* 4. Connection Handles & Usability */
+.react-flow__handle {
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.react-flow__handle:active,
+.react-flow__handle.connecting,
+.react-flow__handle.valid {
+  background-color: #38BDF8 !important;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.85);
+  transform: scale(1.3);
+}
+
+/* 5. Node Usability */
+.react-flow__node {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 6. Panel Adaptations (Centering, Containment & Overlap Prevention) */
+.react-flow__panel {
+  margin: 10px;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+.react-flow__attribution {
+  background: rgba(11, 17, 32, 0.7) !important;
+  padding: 1px 4px !important;
+  font-size: 8px !important;
+}
+
+.react-flow__attribution a {
+  color: #64748B !important;
+}
+
+/* 7. Responsive Breakpoints */
+
+/* Desktop Screens (> 1024px) */
+@media (min-width: 1025px) {
+  .react-flow__minimap {
+    width: 180px !important;
+    height: 120px !important;
+    bottom: 12px !important;
+    right: 12px !important;
+  }
+}
+
+/* Tablet Screens (<= 1024px) */
+@media (max-width: 1024px) {
+  .react-flow__controls {
+    margin: 8px !important;
+    bottom: 8px !important;
+    left: 8px !important;
+  }
+
+  .react-flow__controls-button {
+    width: 28px;
+    height: 28px;
+  }
+
+  .react-flow__minimap {
+    width: 130px !important;
+    height: 90px !important;
+    margin: 8px !important;
+    bottom: 8px !important;
+    right: 8px !important;
+  }
+
+  .react-flow__panel.bottom.center {
+    max-width: calc(100% - 180px) !important;
+    font-size: 10px !important;
+  }
+}
+
+/* Mobile Screens (<= 768px) */
+@media (max-width: 768px) {
+  .react-flow__controls {
+    margin: 6px !important;
+    bottom: 6px !important;
+    left: 6px !important;
+    border-radius: 6px !important;
+  }
+
+  .react-flow__controls-button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .react-flow__controls-button svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .react-flow__minimap {
+    width: 95px !important;
+    height: 65px !important;
+    margin: 6px !important;
+    bottom: 6px !important;
+    right: 6px !important;
+    opacity: 0.85;
+  }
+
+  .react-flow__minimap:hover,
+  .react-flow__minimap:active {
+    opacity: 1;
+  }
+
+  /* Handle sizing on mobile */
+  .react-flow__handle {
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+  /* Node sizing on mobile */
+  .react-flow__node {
+    max-width: min(260px, calc(100vw - 48px));
+  }
+
+  /* Prevent bottom panel from colliding with controls and minimap */
+  .react-flow__panel.bottom.center {
+    bottom: 6px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    max-width: calc(100% - 140px) !important;
+    margin: 0 !important;
+    padding: 3px 8px !important;
+    font-size: 10px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    justify-content: center;
+  }
+
+  .react-flow__panel.bottom.center span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* Small Mobile Screens (<= 480px) */
+@media (max-width: 480px) {
+  .react-flow__controls {
+    margin: 4px !important;
+    bottom: 4px !important;
+    left: 4px !important;
+  }
+
+  .react-flow__controls-button {
+    width: 28px;
+    height: 28px;
+  }
+
+  .react-flow__controls-button svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .react-flow__minimap {
+    width: 72px !important;
+    height: 48px !important;
+    margin: 4px !important;
+    bottom: 4px !important;
+    right: 4px !important;
+    border-radius: 6px !important;
+    opacity: 0.75;
+  }
+
+  .react-flow__handle {
+    width: 13px !important;
+    height: 13px !important;
+  }
+
+  .react-flow__node {
+    max-width: min(210px, calc(100vw - 32px));
+  }
+
+  .react-flow__panel.bottom.center {
+    max-width: calc(100% - 110px) !important;
+    font-size: 9px !important;
+    padding: 2px 6px !important;
+    gap: 4px !important;
+  }
+}
+
+/* 8. Accessibility: Reduced Motion Support (Scoped to React Flow Canvas) */
+@media (prefers-reduced-motion: reduce) {
+  .react-flow,
+  .react-flow *,
+  .react-flow *::before,
+  .react-flow *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .react-flow .animated-flow-edge path {
+    animation: none !important;
+    stroke-dasharray: none !important;
+  }
+
+  .react-flow .animate-pulse-dot {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .react-flow .glow-node-active,
+  .react-flow .glow-node-alert,
+  .react-flow .react-flow__node,
+  .react-flow .react-flow__handle,
+  .react-flow .react-flow__controls-button,
+  .react-flow .react-flow__minimap {
+    transition: none !important;
+  }
+
+  .react-flow .react-flow__handle:hover,
+  .react-flow .react-flow__handle:active,
+  .react-flow .react-flow__handle.connecting {
+    transform: none !important;
+  }
+}
