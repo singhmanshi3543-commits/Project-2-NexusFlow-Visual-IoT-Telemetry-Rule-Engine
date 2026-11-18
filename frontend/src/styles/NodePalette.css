@@ -1,0 +1,31 @@
+/* Node Palette and Data Source Drag-and-Drop Styles */
+.node-palette-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.node-palette-item {
+  transition: all 0.15s ease-in-out;
+  cursor: grab;
+}
+
+.node-palette-item:active {
+  cursor: grabbing;
+  transform: scale(0.98);
+}
+
+.node-palette-source {
+  border-left: 3px solid #38bdf8;
+}
+
+.node-palette-source:hover {
+  background-color: rgba(56, 189, 248, 0.08);
+  border-color: #0284c7;
+}
+
+.node-badge-source {
+  background-color: rgba(14, 165, 233, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(14, 165, 233, 0.3);
+}

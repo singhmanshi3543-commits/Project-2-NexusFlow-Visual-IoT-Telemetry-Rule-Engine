@@ -1,3 +1,4 @@
+import '../styles/NodePalette.css';
 import React, { useState } from 'react';
 import { 
   Database, 
@@ -201,3 +202,4 @@ export const NodePalette: React.FC = () => {
     </div>
   );
 };
+
