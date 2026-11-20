@@ -31,6 +31,7 @@ import {
   Plus
 } from 'lucide-react';
 
+// Register and render custom node types for React Flow dataflow pipelines
 import { customNodeTypes } from '../nodes';
 import { NodePalette } from './NodePalette';
 import { NodeConfigInspector } from './NodeConfigInspector';
@@ -483,4 +484,5 @@ export const VisualGraphBuilder: React.FC = () => {
     </div>
   );
 };
+
 
