@@ -2,6 +2,13 @@ import { CompiledPipeline, compileGraph } from './graphCompiler.js';
 import { GraphDefinition } from './graphValidator.js';
 import { TelemetryDocument, getDatabase, GraphDefinitionDocument } from '../database/mongo.js';
 import { wsHub } from '../websockets/hub.js';
+import { getgid } from 'process';
+import { b } from 'vitest/dist/chunks/suite.B2jumIFP.js';
+import { JsonWebTokenError } from 'jsonwebtoken';
+import { J } from 'vitest/dist/chunks/reporters.nr4dxCkA.js';
+import { kMaxLength } from 'buffer';
+import { JSONSchema } from 'zod/v4/core';
+import { KeyObject } from 'crypto';
 
 class PipelineManager {
   private pipelines: Map<string, CompiledPipeline> = new Map();
@@ -37,7 +44,6 @@ class PipelineManager {
     const id = graph.id || `graph-${Date.now()}`;
     graph.id = id;
 
-    // If an existing pipeline exists, gracefully destroy it first
     if (this.pipelines.has(id)) {
       this.stop(id);
     }
