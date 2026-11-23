@@ -35,6 +35,7 @@ import {
 import { customNodeTypes } from '../nodes';
 import { NodePalette } from './NodePalette';
 import { NodeConfigInspector } from './NodeConfigInspector';
+import { useGraph } from '../hooks/useGraph';
 import { api } from '../services/api';
 import { VisualGraphDefinition } from '../types';
 import { useWebSocket } from '../contexts/WebSocketContext';
@@ -199,6 +200,7 @@ export const VisualGraphBuilder: React.FC = () => {
     setSelectedNode(clone);
   };
 
+  // Connect canvas state to graph JSON serialization
   const handleSaveGraph = async () => {
     try {
       setStatusMessage('Saving graph to MongoDB...');
