@@ -218,6 +218,11 @@ export interface SerializationOptions {
 }
 
 /**
+ * Severity levels for graph validation diagnostics
+ */
+export type ValidationSeverity = 'error' | 'warning';
+
+/**
  * Validation error item with specific code and optional node/edge context
  */
 export interface GraphValidationError {
@@ -226,6 +231,19 @@ export interface GraphValidationError {
   field?: string;
   nodeId?: string;
   edgeId?: string;
+  severity?: ValidationSeverity;
+}
+
+/**
+ * Structured validation warning item with code and optional node/edge context
+ */
+export interface GraphValidationWarning {
+  code: string;
+  message: string;
+  field?: string;
+  nodeId?: string;
+  edgeId?: string;
+  severity?: ValidationSeverity;
 }
 
 /**
@@ -235,6 +253,8 @@ export interface GraphValidationResult {
   isValid: boolean;
   errors: GraphValidationError[];
   warnings: string[];
+  warningDetails?: GraphValidationWarning[];
+  structuredWarnings?: GraphValidationWarning[];
 }
 
 /**
