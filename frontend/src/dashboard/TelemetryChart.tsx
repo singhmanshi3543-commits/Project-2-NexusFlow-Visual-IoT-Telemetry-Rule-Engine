@@ -10,19 +10,12 @@ import {
   CartesianGrid,
   Tooltip,
 } from 'recharts';
+import {
+  TelemetryDataPoint,
+  MetricSeriesConfig,
+  DEFAULT_TELEMETRY_SERIES,
+} from '../types/telemetry';
 import '../styles/TelemetryChart.css';
-
-export interface MetricSeriesConfig {
-  key: string;
-  label: string;
-  color: string;
-  unit: string;
-}
-
-export interface TelemetryDataPoint {
-  timestamp: string | number;
-  [key: string]: any;
-}
 
 export interface TelemetryChartProps {
   data: TelemetryDataPoint[];
@@ -33,16 +26,9 @@ export interface TelemetryChartProps {
   isLive?: boolean;
 }
 
-const DEFAULT_METRICS: MetricSeriesConfig[] = [
-  { key: 'temperature', label: 'Temperature', color: '#06B6D4', unit: '°C' },
-  { key: 'humidity', label: 'Humidity', color: '#10B981', unit: '%' },
-  { key: 'energy', label: 'Active Power', color: '#F59E0B', unit: 'kWh' },
-  { key: 'air_quality', label: 'Air Quality (AQI)', color: '#8B5CF6', unit: 'AQI' },
-];
-
 export const TelemetryChart: React.FC<TelemetryChartProps> = ({
   data,
-  metrics = DEFAULT_METRICS,
+  metrics = DEFAULT_TELEMETRY_SERIES,
   chartType = 'area',
   height = 320,
   title = 'Real-Time IoT Telemetry Stream',
@@ -68,6 +54,11 @@ export const TelemetryChart: React.FC<TelemetryChartProps> = ({
         </div>
         {payload.map((entry: any, index: number) => {
           const metricConfig = metrics.find((m) => m.key === entry.dataKey);
+          const rawValue = typeof entry.value === 'number' ? entry.value : Number(entry.value);
+          const formattedVal = metricConfig?.formatter
+            ? metricConfig.formatter(rawValue)
+            : `${rawValue.toFixed(2)} ${metricConfig?.unit || ''}`;
+
           return (
             <div key={`tooltip-${index}`} className="telemetry-chart-tooltip-row">
               <span className="flex items-center gap-1.5" style={{ color: entry.color }}>
@@ -75,8 +66,7 @@ export const TelemetryChart: React.FC<TelemetryChartProps> = ({
                 <span>{metricConfig?.label || entry.name}</span>
               </span>
               <span className="font-mono font-semibold text-white">
-                {typeof entry.value === 'number' ? entry.value.toFixed(2) : entry.value}{' '}
-                <span className="text-slate-400 text-xs">{metricConfig?.unit || ''}</span>
+                {formattedVal}
               </span>
             </div>
           );
@@ -98,7 +88,7 @@ export const TelemetryChart: React.FC<TelemetryChartProps> = ({
           <h4 className="text-sm font-bold text-slate-100">{title}</h4>
         </div>
         <span className="text-xs text-slate-400 font-mono">
-          {data.length} data points
+          {data.length} readings
         </span>
       </div>
 
@@ -176,3 +166,5 @@ export const TelemetryChart: React.FC<TelemetryChartProps> = ({
     </div>
   );
 };
+
+export { DEFAULT_TELEMETRY_SERIES };
